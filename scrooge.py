@@ -37,12 +37,13 @@ class Scrooge():
 
     def process_payment(self, payment, signatures):
         """
-        Process a payment sent by a user. Params:
+        Process a payment sent by a user. 
+        Params:
         - signatures: A list of tuples with the users'
            validation keys as the first component
         """
         # Verify users' signatures
-        if not self.verify_signatures(payment, signatures or not payment.verify_balance()):
+        if not self.verify_signatures(payment, signatures) or not payment.verify_balance():
             return None
 
         # Check if all the coins that are being transferred
