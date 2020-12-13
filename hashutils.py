@@ -3,8 +3,8 @@ import hashlib
 
 def hash_sha256(encoded_str):
     """
-    Return the sha256 hash of an encoded string
-    passed as parameter.
+    Return the hexidecimal sha256 hash of an 
+    encoded string passed as parameter.
     """
     hashfunc = hashlib.sha256()
     hashfunc.update(encoded_str)
