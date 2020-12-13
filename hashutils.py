@@ -19,7 +19,7 @@ def hash_object(obj):
     return hash_sha256(str(obj).encode('utf-8'))
 
 
-def encoded_hash_obj(obj):
+def encoded_hash_object(obj):
     """
     Return the utf-8 encoded hash of the encoded
     string of the object passed as paramater.
