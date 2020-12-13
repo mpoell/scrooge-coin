@@ -1,6 +1,6 @@
 class ScroogeCoin():
     """
-    Scroogecoin object
+    Scroogecoin class
 
     - coin_id: unique integer Id
     - value: how many scroogecoins the coin represents
