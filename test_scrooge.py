@@ -1,6 +1,6 @@
 import unittest
 from scrooge import Scrooge
-from scroogecoin import Scroogecoin
+from scroogecoin import ScroogeCoin
 from transaction import CoinCreation, Payment
 from hashutils import encoded_hash_object
 
@@ -13,8 +13,8 @@ class ScroogeTest(unittest.TestCase):
     def test_coin_creation(self):
         scrooge = Scrooge()
         coins = [
-            Scroogecoin(value=2, wallet_id=scrooge.wallet.id),
-            Scroogecoin(value=5, wallet_id=scrooge.wallet.id)
+            ScroogeCoin(value=2, wallet_id=scrooge.wallet.id),
+            ScroogeCoin(value=5, wallet_id=scrooge.wallet.id)
         ]
         scrooge.create_coins(coins)
         self.assertTrue(isinstance(scrooge.blockchain.blocks[1].transaction,
@@ -25,7 +25,7 @@ class ScroogeTest(unittest.TestCase):
             to the same wallet without signing
         """
         scrooge = Scrooge()
-        coin = Scroogecoin(value=2, wallet_id=scrooge.wallet.id)
+        coin = ScroogeCoin(value=2, wallet_id=scrooge.wallet.id)
         created_coins = scrooge.create_coins([coin]).transaction.created_coins
         payment = Payment(created_coins=[coin], consumed_coins=created_coins)
         payment_result = scrooge.process_payment(payment, [])
@@ -36,7 +36,7 @@ class ScroogeTest(unittest.TestCase):
             to the same wallet
         """
         scrooge = Scrooge()
-        coin = Scroogecoin(value=2, wallet_id=scrooge.wallet.id)
+        coin = ScroogeCoin(value=2, wallet_id=scrooge.wallet.id)
         created_coins = scrooge.create_coins([coin]).transaction.created_coins
         payment = Payment(created_coins=[coin], consumed_coins=created_coins)
         signature = scrooge.wallet.sign(encoded_hash_object(payment))
